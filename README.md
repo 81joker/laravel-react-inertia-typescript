@@ -20,7 +20,7 @@ sudo chmod -R 777 /home/nehad/Laravel/Laravel-React/laravel-react-inertia-typesc
 
 7- make factory FeatureFactory 
 
-8- oterate the Feature in controller index with edit the route feature/index
+8- iterate the Feature in controller index with edit the route feature/index
 
 9- make Resources AuthUserResource , UserResource , FeatureResource
     inside AuthUserResource: 
