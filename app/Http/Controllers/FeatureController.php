@@ -25,15 +25,23 @@ class FeatureController extends Controller
      */
     public function create()
     {
-        //
+        dd('Create Feature');
+        // return Inertia::render('Features/Create');
     }
+
+ 
+public function test() {
+    // Your logic here
+    return response()->json(['message' => 'Feature test route']);
+}
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
+        dd('STORE   Feature');
+
     }
 
     /**

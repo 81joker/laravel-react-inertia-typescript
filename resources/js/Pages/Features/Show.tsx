@@ -8,7 +8,7 @@ export default function Show({ feature }: { feature: Feature }) {
         <AuthenticatedLayout
             header={
                 <h2 className="text-xl font-semibold leading-tight text-gray-800">
-                    Index
+                    Feature Show
                 </h2>
             }
         >
