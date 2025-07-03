@@ -25,6 +25,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     return Inertia::render('Dashboard');
 })->name('dashboard');
     Route::get('/feature' , [FeatureController::class, 'index'])->name('feature.index');
+    Route::get('/feature/{feature}' , [FeatureController::class, 'show'])->name('feature.show');
 });
 
 Route::middleware('auth')->group(function () {
