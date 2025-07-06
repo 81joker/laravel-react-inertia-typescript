@@ -25,22 +25,26 @@ class FeatureController extends Controller
      */
     public function create()
     {
-        dd('Create Feature');
-        // return Inertia::render('Features/Create');
+        return Inertia::render('Features/Create');
     }
 
- 
-public function test() {
-    // Your logic here
-    return response()->json(['message' => 'Feature test route']);
-}
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        dd('STORE   Feature');
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            // 'user_id' => 'required|exists:users,id',
+        ]);
+        
+        $request['user_id'] = auth()->id();
+        
+        Feature::create($request->only('name', 'description', 'user_id'));
+
+        return redirect()->route('feature.index')->with('success', 'Feature created successfully.');
 
     }
 
