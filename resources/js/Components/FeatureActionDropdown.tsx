@@ -18,7 +18,7 @@ export default function FeatureActionDropdown({ feature }: PropsWithChildren<{ f
                         <Link href={`/feature/${feature.id}/edit`} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700">
                             Edit
                         </Link>
-                        <Link href={`/feature/${feature.id}`} method="delete" as="button" className="block px-4 py-2 text-sm text-red-600 hover:bg-red-100 dark:text-red-400 dark:hover:bg-red-700">
+                        <Link href={`/feature/${feature.id}`} method="delete" as="button" className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-100 dark:text-red-400 dark:hover:bg-red-700">
                             Delete
                         </Link>
                     </>
