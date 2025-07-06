@@ -63,7 +63,7 @@ class FeatureController extends Controller
      */
     public function edit(Feature $feature)
     {
-        //
+        return Inertia::render('Features/Edit',['feature' => $feature]);
     }
 
     /**
@@ -71,7 +71,7 @@ class FeatureController extends Controller
      */
     public function update(Request $request, Feature $feature)
     {
-        //
+        dd($feature->update($request->only('name','description','user_id') ));
     }
 
     /**
@@ -79,6 +79,8 @@ class FeatureController extends Controller
      */
     public function destroy(Feature $feature)
     {
-        //
+        $feature->delete();
+
+        return to_route('feature.index')->with('success', 'Feature deleted successfully');
     }
 }
