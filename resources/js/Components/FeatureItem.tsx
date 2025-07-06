@@ -1,7 +1,10 @@
 
 import { Feature } from '@/types';
 import { useState } from 'react';
-import {Link} from '@inertiajs/react';
+import { Link } from '@inertiajs/react';
+import Dropdown from '@/Components/Dropdown';
+import FeatureActionDropdown from './FeatureActionDropdown';
+
 export default function FeatureItem({ feature }: { feature: Feature }) {
     const [isExpanded, setIsExpanded] = useState(false);
     const toggleReadMore = () => {
@@ -17,7 +20,7 @@ export default function FeatureItem({ feature }: { feature: Feature }) {
                         </svg>
 
                     </button>
-                    <span className='text-2xl text-semibold'>{ feature.id }</span>
+                    <span className='text-2xl text-semibold'>{feature.id}</span>
                     <button>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-12">
                             <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
@@ -27,10 +30,30 @@ export default function FeatureItem({ feature }: { feature: Feature }) {
                 </div>
                 <div className="flex-1">
                     <Link href={`/feature/${feature.id}`} className='text-blue-500 hover:underline mb-2'>
-                    <h2 className='text-2xl mb-2'>{feature.name}</h2>
+                        <h2 className='text-2xl mb-2'>{feature.name}</h2>
                     </Link>
-                    <p>{isExpanded ? feature.description : `${feature.description.slice(0, 100)}...` }</p>
-                    <button className='text-amber-500 hover:underline' onClick={toggleReadMore}>{isExpanded ? 'Read less' : 'Read more'}</button>
+                    {(feature.description || '').length > 200 && (
+                        <>
+                            <p>{isExpanded ? feature.description : `${(feature.description || '').slice(0, 200)}...`}</p>
+
+                            <button onClick={toggleReadMore} className="text-amber-500 hover:underline">
+                                {isExpanded ? 'Read Less' : 'Read More'}
+                            </button>
+                        </>
+                    )}
+                    {(feature.description || '').length <= 200 && (
+                        <p>{feature.description}</p>
+                    )}
+
+                    {/* <p>{isExpanded ? feature.description : `${feature.description.slice(0, 100)}...` }</p> */}
+                    {/* <button className='text-amber-500 hover:underline' onClick={toggleReadMore}>{isExpanded ? 'Read less' : 'Read more'}</button> */}
+
+
+
+                </div>
+                <div>
+                    <FeatureActionDropdown feature={feature} />
+                    
                 </div>
             </div>
         </div>
