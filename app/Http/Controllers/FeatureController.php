@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Inertia\Inertia;
+use App\Models\Upvote;
 use App\Models\Feature;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\FeatureResource;
 
 class FeatureController extends Controller
@@ -70,7 +72,37 @@ class FeatureController extends Controller
      */
     public function show(Feature $feature)
     {
-        return Inertia::render('Features/Show', [
+        // $feature->upvote_count = Upvote::select(DB::raw('SUM(CASE WHEN upvote = 1 THEN 1 ELSE -1 END)'))->where('feature_id' , $feature->id)->count();
+        // dd($feature);
+  
+
+
+        $feature->upvote_count = Upvote::where('feature_id', $feature->id)
+            ->sum(DB::raw('CASE WHEN upvote = 1 THEN 1 ELSE -1 END'));
+
+        $feature->user_has_upvoted = Upvote::where('feature_id', $feature->id)
+            ->where('user_id', Auth::id())
+            ->where('upvote', 1)
+            ->exists();
+        $feature->user_has_downvoted = Upvote::where('feature_id', $feature->id)
+            ->where('user_id', Auth::id())
+            ->where('upvote', 0)
+            ->exists();
+
+        // return Inertia::render('Feature/Show', [
+        //     'feature' => new FeatureResource($feature),
+        //     'comments' => Inertia::defer(function() use ($feature) {
+        //         return $feature->comments->map(function ($comment) {
+        //             return [
+        //                 'id' => $comment->id,
+        //                 'comment' => $comment->comment,
+        //                 'created_at' => $comment->created_at->format('Y-m-d H:i:s'),
+        //                 'user' => new UserResource($comment->user),
+        //             ];
+        //         });
+        //     })
+        // ]);
+              return Inertia::render('Features/Show', [
             'feature' => new FeatureResource($feature)
         ]);
     }

@@ -5,16 +5,6 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\FeatureController;
-
-// Route::get('/', function () {
-//     return Inertia::render('Welcome', [
-//         'canLogin' => Route::has('login'),
-//         'canRegister' => Route::has('register'),
-//         'laravelVersion' => Application::VERSION,
-//         'phpVersion' => PHP_VERSION,
-//     ]);
-// });
-
 Route::redirect('/', '/dashboard' );
 // Route::get('/dashboard', function () {
 //     return Inertia::render('Dashboard');
@@ -27,6 +17,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('feature', FeatureController::class)->except(['index', 'show']);
     Route::get('/feature' , [FeatureController::class, 'index'])->name('feature.index');
     Route::get('/feature/{feature}' , [FeatureController::class, 'show'])->name('feature.show');
+    Route::post('feature/{feature}/upvote', [\App\Http\Controllers\UpvoteController::class, 'store'])->name('upvote.store');
+    Route::delete('upvote/{upvote}/upvote', [\App\Http\Controllers\UpvoteController::class, 'destroy'])->name('upvote.destroy');
 });
 
 Route::middleware('auth')->group(function () {

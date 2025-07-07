@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Link } from '@inertiajs/react';
 import Dropdown from '@/Components/Dropdown';
 import FeatureActionDropdown from './FeatureActionDropdown';
+import FeatureUpvoteDownvote from './FeatureUpvoteDownvote';
 
 export default function FeatureItem({ feature }: { feature: Feature }) {
     const [isExpanded, setIsExpanded] = useState(false);
@@ -13,7 +14,7 @@ export default function FeatureItem({ feature }: { feature: Feature }) {
     return (
         <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg mb-4">
             <div className="p-6 text-gray-900 flex gap-8">
-                <div className='flex flex-col items-center'>
+                {/* <div className='flex flex-col items-center'>
                     <button className={feature.user_has_upvoted  ? 'text-amber-600' : ''}>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-12">
                             <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
@@ -29,7 +30,8 @@ export default function FeatureItem({ feature }: { feature: Feature }) {
                         </svg>
                     </button>
 
-                </div>
+                </div> */}
+                <FeatureUpvoteDownvote feature={feature} />
                 <div className="flex-1">
                     <Link href={`/feature/${feature.id}`} className='text-blue-500 hover:underline mb-2'>
                         <h2 className='text-2xl mb-2'>{feature.name}</h2>
