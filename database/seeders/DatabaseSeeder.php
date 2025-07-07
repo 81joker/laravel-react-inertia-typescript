@@ -61,5 +61,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Feature::factory(100)->create();
+
+        $this->call([UpvoteSeeder::class]);
     }
 }
