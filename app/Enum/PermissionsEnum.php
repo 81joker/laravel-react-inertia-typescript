@@ -2,10 +2,10 @@
 
 namespace App\Enum;
 
-enum PermissionEnum: string
+enum PermissionsEnum: string
 {
     case MangeFeatures = 'mange_features';
     case MangeUsers = 'mange_users';
-    case MangeComments  = 'mange_comments';
+    case ManageComments  = 'mange_comments';
     case UpvoteDownvote = 'upvote_downvote';
 }

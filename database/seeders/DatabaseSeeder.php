@@ -8,7 +8,7 @@ use App\Models\User;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
-use App\Enum\PermissionEnum;
+use App\Enum\PermissionsEnum;
 use App\Models\Feature;
 
 class DatabaseSeeder extends Seeder
@@ -24,15 +24,15 @@ class DatabaseSeeder extends Seeder
         $commenterRole = Role::create(['name'=> RolesEnum::Commenter->value]);
 
         $manageFeaturesPermission = Permission::create([
-            'name' => PermissionEnum::MangeFeatures->value,
+            'name' => PermissionsEnum::MangeFeatures->value,
         ]); 
 
         $manageCommentsPermission = Permission::create([
-            'name' => PermissionEnum::MangeComments->value,
+            'name' => PermissionsEnum::ManageComments->value,
         ]); 
 
         $upvoteDownvotePermission = Permission::create([
-            'name' => PermissionEnum::UpvoteDownvote->value]); 
+            'name' => PermissionsEnum::UpvoteDownvote->value]); 
 
         // $userRole->givePermissionTo($manageFeaturesPermission);
         // $userRole->givePermissionTo($manageCommentsPermission);
