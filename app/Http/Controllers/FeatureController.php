@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\FeatureResource;
+use App\Http\Resources\FeatureListResource;
 
 class FeatureController extends Controller
 {
@@ -35,7 +36,7 @@ class FeatureController extends Controller
         ->paginate();
         // $paginate = Feature::latest()->paginate(10);
         return Inertia::render('Features/Index' , [
-            'features' => FeatureResource::collection($paginate)
+            'features' => FeatureListResource::collection($paginate)
         ]);
     }
 
